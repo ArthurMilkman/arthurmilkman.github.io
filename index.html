@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arthur Mielnik</title>
+  <meta name="description" content="Arthur Mielnik — Strategist. Spreadsheet Whisperer. Operator." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f6f8fc;
+      --ink:#0f172a;
+      --muted:#475569;
+      --accent:#16a34a;
+      --accent-2:#0ea5e9;
+      --card:#ffffff;
+      --line:#e5e9f5;
+      --ok:#16a34a;
+    }
+    * { box-sizing: border-box; }
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; color:var(--ink); background: linear-gradient(180deg, #fbfcff, var(--bg));
+      font-family: Manrope, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      line-height:1.6;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .nav-wrap{position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(8px); background:rgba(255,255,255,.8); border-bottom:1px solid var(--line)}
+    nav{display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:16px; max-width:1100px; margin:0 auto; padding:14px 20px}
+    .nav-links{display:flex; gap:18px; align-items:center}
+    .nav-links a{color:var(--muted); padding:8px 10px; border-radius:6px}
+    .nav-links a:hover{background:rgba(2,6,23,.04); color:var(--ink)}
+    .brand{justify-self:center; font-weight:800; letter-spacing:.3px; color:var(--ink); font-size:18px; padding:8px 14px; border-radius:6px; background:linear-gradient(90deg, rgba(22,163,74,.08), rgba(14,165,233,.08)); border:1px solid var(--line)}
+    .brand:hover{text-decoration:none; filter:brightness(1.02)}
+
+    section{padding:80px 20px}
+    .wrap{max-width:1100px; margin:0 auto}
+
+    .hero{padding:0 0 60px}
+    .banner{height: min(32vw, 260px); background-image: linear-gradient(0deg, rgba(22,163,74,.16), rgba(14,165,233,.16)), url('assets/banner.png'); background-size: cover; background-position:center; border-bottom:1px solid var(--line)}
+    .headline{font-size: clamp(32px, 5vw, 56px); font-weight:800; letter-spacing:.2px; line-height:1.1; margin-top:4px}
+    .headline .spark{display:inline-block; position:relative}
+    .headline .line{display:block}
+    .headline .spark:after{content:""; position:absolute; left:0; right:0; bottom:-8px; height:6px; border-radius:3px; background:linear-gradient(90deg, var(--accent), var(--accent-2)); opacity:.9}
+    .sub{max-width:820px; font-size: clamp(16px, 2.1vw, 20px); color:var(--muted)}
+
+    .hero-grid{display:grid; grid-template-columns:320px 1fr; gap:28px; padding:28px 20px 0}
+    .photo{background:#f3f6ff; border:1px solid var(--line); border-radius:6px; overflow:hidden}
+    .photo img{display:block; width:100%; height:100%; object-fit:cover; aspect-ratio:4/5}
+
+    .cta-row{display:flex; gap:12px; flex-wrap:wrap; margin-top:22px}
+    .btn{display:inline-flex; align-items:center; gap:10px; background:var(--card); color:var(--ink); border:1px solid var(--line); padding:12px 16px; border-radius:6px}
+    .btn:hover{transform:translateY(-1px); background:#f7fafc}
+
+    .connect-ribbon{margin-top:28px; padding:16px; border-radius:6px; border:1px solid var(--line); background:linear-gradient(90deg, rgba(22,163,74,.08), rgba(14,165,233,.08))}
+
+    .about-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:24px}
+    .card{background:var(--card); border:1px solid var(--line); border-radius:6px; padding:22px}
+    .h2{font-family:"Source Serif 4", ui-serif, Georgia, serif; font-size: clamp(26px, 3.4vw, 34px); margin:0 0 14px}
+    .muted{color:var(--muted)}
+
+    .timeline{position:relative; padding:8px 0 8px 24px}
+    .timeline:before{content:""; position:absolute; left:10px; top:0; bottom:0; width:2px; background:var(--line)}
+    .t-item{position:relative; margin:18px 0 24px}
+    .t-item:before{content:""; position:absolute; left:-15px; top:4px; width:12px; height:12px; transform:rotate(45deg); background:linear-gradient(90deg, var(--accent), var(--accent-2)); box-shadow:0 0 0 4px rgba(22,163,74,.08)}
+    .t-title{font-weight:700}
+
+    .reads-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:16px}
+    .tag{display:inline-block; font-size:12px; padding:4px 8px; border-radius:6px; border:1px solid var(--line); color:var(--muted)}
+
+    .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px}
+    .chip{display:inline-block; font-size:12px; padding:4px 8px; background:rgba(22,163,74,.08); border:1px solid rgba(22,163,74,.3); color:#065f46; border-radius:6px}
+
+    .connect{display:grid; grid-template-columns:1.2fr .8fr; gap:24px}
+    .form input, .form textarea{width:100%; padding:12px 14px; border-radius:6px; border:1px solid var(--line); background:#f8fafc; color:var(--ink)}
+    .form textarea{min-height:120px; resize:vertical}
+    .form button{cursor:pointer}
+
+    .kicker{letter-spacing:.2em; text-transform:uppercase; font-weight:700; font-size:12px; color:var(--muted)}
+    .list{margin:0; padding:0 0 0 18px}
+    .list li{margin:6px 0}
+
+    @media (max-width: 900px){
+      nav{grid-template-columns:1fr auto 1fr}
+      .about-grid{grid-template-columns:1fr}
+      .connect{grid-template-columns:1fr}
+      .brand{justify-self:center}
+      .hero-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-wrap">
+    <nav aria-label="Primary">
+      <div class="nav-links" style="justify-self:start">
+        <a href="#about">About Me</a>
+        <a href="#reads">Interesting reads</a>
+      </div>
+      <a class="brand" href="#home" aria-label="Go to home">Arthur Mielnik</a>
+      <div class="nav-links" style="justify-self:end">
+        <a href="#sheets">Some Spreadsheets</a>
+        <a href="#connect">Let’s connect</a>
+      </div>
+    </nav>
+  </div>
+
+  <section id="home" class="hero">
+    <div class="banner" role="img" aria-label="Business banner image"></div>
+    <div class="wrap hero-grid">
+      <div class="photo" aria-label="Headshot placeholder">
+        <img src="assets/headshot.png" alt="Photo of Arthur Mielnik" />
+      </div>
+      <div>
+        <h1 class="headline">
+          <span class="line spark">Strategist</span>
+          <span class="line spark">Spreadsheet Whisperer</span>
+          <span class="line spark">Operator</span>
+        </h1>
+        <p class="sub">
+          I help rapidly growing organizations scale with discipline. I diagnose what’s working, restructure teams and processes,
+          and translate strategy into executable plans backed by clear economics and operating cadence. The result: focused growth,
+          accountable execution, and durable performance.
+        </p>
+        <div class="cta-row" role="group" aria-label="Primary actions">
+          <a class="btn" href="#about">Explore my approach</a>
+          <a class="btn" href="#reads">See interesting reads</a>
+          <a class="btn" href="#connect">Start a conversation</a>
+        </div>
+        <div class="connect-ribbon">
+          <strong>Always looking to meet interesting people working on interesting projects.</strong>
+          <div style="height:8px"></div>
+          <a class="btn" href="#connect" aria-label="Jump to connect section">Let’s connect →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about-grid">
+      <div class="card">
+        <div class="kicker">About Me</div>
+        <h2 class="h2">I create growth opportunities—and make them real.</h2>
+        <p class="muted">My work sits at the intersection of strategy, org design, and operating economics—clarifying where to play, how to win, and how to stand up the teams, processes, and dashboards that keep everyone rowing in the same direction.</p>
+        <p>
+          At iBrain (The International Institute for the Brain), we tripled in size during my tenure and launched additional
+          business lines. I helped shape the organization’s lateral expansion into healthcare and education, supporting leadership
+          with the financial and operational models to scale responsibly—flying the plane while we build it.
+        </p>
+        <h3 style="margin-top:18px">What I do</h3>
+        <ul class="list">
+          <li><strong>Growth design & economics:</strong> market sizing, pricing, unit economics, and portfolio bets—so growth pays for itself.</li>
+          <li><strong>Org & process restructuring:</strong> right roles, spans, workflows, and governance to move faster with clarity.</li>
+          <li><strong>Execution systems:</strong> roadmaps, cadence, and transparent reporting so plans survive first contact with reality.</li>
+          <li><strong>Modeling that drives action:</strong> revenue engines (rates, payer mix, volumes), cost architecture (people, space, vendors),
+              capacity & staffing models, cash‑flow and working‑capital planning, and scenario/sensitivity analysis to de‑risk decisions.</li>
+        </ul>
+        <h3 style="margin-top:18px">Alma mater</h3>
+        <p>Lafayette College.</p>
+        <h3 style="margin-top:18px">Organizations I’ve worked with (what they do)</h3>
+        <ul class="list">
+          <li><strong>International Institute for the Brain (iBrain):</strong> specialized research and education organization serving individuals with brain injuries; operates programs and services focused on treatment and outcomes.</li>
+          <li><strong>Genuine Interactive:</strong> full‑service digital marketing agency specializing in product launches and brand development.</li>
+          <li><strong>COWI North America:</strong> multinational engineering consultancy delivering complex infrastructure and technical projects.</li>
+          <li><strong>Training The Street:</strong> intensive finance education provider focused on financial statement analysis, valuation, and modeling.</li>
+        </ul>
+      </div>
+      <aside class="card" aria-label="Timeline">
+        <div class="kicker">Trajectory</div>
+        <h2 class="h2">A few milestones</h2>
+        <div class="timeline">
+          <div class="t-item"><div class="t-title">Scaled iBrain 3× while adding new business lines</div><div class="muted">Paired growth with operating models, reporting, and planning to keep execution disciplined.</div></div>
+          <div class="t-item"><div class="t-title">Built cross‑functional operating cadence</div><div class="muted">Quarterly and weekly rhythms with dashboards, KPIs, and decision windows.</div></div>
+          <div class="t-item"><div class="t-title">Restructured teams & workflows</div><div class="muted">Clarified ownership, improved handoffs, and increased decision speed.</div></div>
+          <div class="t-item"><div class="t-title">Stood up modeling toolkit</div><div class="muted">Pricing, capacity, and cash‑flow models that leaders actually use to steer.</div></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="reads">
+    <div class="wrap">
+      <div class="kicker">Interesting reads</div>
+      <h2 class="h2">Articles</h2>
+      <div class="reads-grid" id="articles"></div>
+      <h2 class="h2" style="margin-top:28px">Books</h2>
+      <div class="reads-grid" id="books"></div>
+      <p class="muted" style="margin-top:10px">Tip: add items by editing the <code>readsData</code> arrays below—title, source, summary, and link.</p>
+    </div>
+  </section>
+
+  <section id="sheets">
+    <div class="wrap">
+      <div class="kicker">Some Spreadsheets</div>
+      <h2 class="h2">Useful, battle‑tested templates</h2>
+      <div class="grid" id="sheetsGrid"></div>
+    </div>
+  </section>
+
+  <section id="connect">
+    <div class="wrap connect">
+      <div class="card">
+        <div class="kicker">Let’s connect</div>
+        <h2 class="h2">Always looking to meet interesting people working on interesting projects.</h2>
+        <p class="muted">Prefer email or LinkedIn? Either works. If you drop a note here, it’ll spin up your email client with a prefilled subject.</p>
+        <p>
+          <a class="btn" href="mailto:arthurmielnik@gmail.com?subject=Let’s build something" aria-label="Email Arthur">Email me</a>
+          <a class="btn" href="https://www.linkedin.com/in/arthur-mielnik/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+        </p>
+        <p class="muted">You can also use the quick note on the right to draft what you’re thinking and copy into email.</p>
+      </div>
+      <div class="card">
+        <div class="kicker">Quick note</div>
+        <form class="form" onsubmit="copyNote(event)">
+          <label for="note" class="muted">Draft your note (we’ll copy this to your clipboard):</label>
+          <textarea id="note" placeholder="Hi Arthur — we’re working on… Would love your take on…"></textarea>
+          <button class="btn" type="submit">Copy to clipboard</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer style="padding:26px 20px; border-top:1px solid rgba(255,255,255,.08); text-align:center; color:var(--muted)">
+    <div>© <span id="year"></span> Arthur Mielnik • <a href="#home">Back to top</a></div>
+  </footer>
+
+  <script>
+    const readsData = {
+      articles: [
+        { title: "Turning strategy into operating cadence", source: "Essay", summary: "Why weekly decision windows beat monthly check-ins when you’re scaling.", href: "#" },
+        { title: "The unit economics of services", source: "Brief", summary: "A quick way to frame price, capacity, and mix when adding a new line of service.", href: "#" },
+        { title: "Three dashboards that actually help", source: "Note", summary: "Exec lens, operator lens, and financial lens—without the noise.", href: "#" }
+      ],
+      books: [
+        { title: "Good Strategy/Bad Strategy", source: "Richard Rumelt", summary: "Clarity of diagnosis → guiding policy → coherent actions.", href: "https://bookshop.org/p/books/good-strategy-bad-strategy-the-difference-and-why-it-matters-richard-rumelt/9309641" },
+        { title: "The Goal", source: "Eliyahu Goldratt", summary: "A narrative on constraints and flow that still holds up for ops leaders.", href: "https://bookshop.org/p/books/the-goal-a-process-of-ongoing-improvement-eliyahu-m-goldratt/6735964" },
+        { title: "Scaling People", source: "Claire Hughes Johnson", summary: "Practical org design and management systems for growth.", href: "https://bookshop.org/p/books/scaling-people-tactics-for-management-and-company-building-claire-hughes-johnson/18586209" }
+      ]
+    };
+
+    const sheetsData = [
+      { title: "Program Unit Economics Model", blurb: "Cost per participant, break‑even, and payer‑mix sensitivity.", tag: "Model" },
+      { title: "Enrollment & Capacity Planner", blurb: "Seats, throughput, and waitlists with scenario toggles.", tag: "Planner" },
+      { title: "Staffing & Scheduling Optimizer", blurb: "Ratios/credentials → compliance flags and OT risk.", tag: "Ops" },
+      { title: "Pricing & Payer‑Mix Sandbox", blurb: "Rates, discounts, reimbursement lags → cash‑flow impact.", tag: "Finance" },
+      { title: "Budget vs. Actuals Tracker", blurb: "Monthly variance bridge with auto‑commentary prompts.", tag: "Reporting" },
+      { title: "M&A Screening Scorecard", blurb: "Triage targets by margin profile, fit, and integration risk.", tag: "Deal" }
+    ];
+
+    function renderReads(){
+      const aWrap = document.getElementById('articles');
+      const bWrap = document.getElementById('books');
+      const make = (item)=>{
+        const el = document.createElement('article');
+        el.className='card';
+        el.innerHTML = `<div class="tag">${item.source}</div>
+                        <h3 style="margin:8px 0 6px">${item.title}</h3>
+                        <p class="muted" style="margin:0 0 10px">${item.summary}</p>
+                        <a class="btn" href="${item.href}" target="_blank" rel="noopener">Open →</a>`;
+        return el;
+      }
+      readsData.articles.forEach(x=>aWrap.appendChild(make(x)));
+      readsData.books.forEach(x=>bWrap.appendChild(make(x)));
+    }
+
+    function renderSheets(){
+      const grid = document.getElementById('sheetsGrid');
+      sheetsData.forEach(s=>{
+        const el = document.createElement('article');
+        el.className='card';
+        el.innerHTML = `<div style="display:flex; gap:8px; align-items:center; justify-content:space-between">
+                          <h3 style="margin:0">${s.title}</h3>
+                          <span class="chip">${s.tag}</span>
+                        </div>
+                        <p class="muted" style="margin:8px 0 12px">${s.blurb}</p>
+                        <a class="btn" href="#" aria-disabled="true" onclick="alert('Hook this up to a download or Google Drive link when ready.')">Get template</a>`;
+        grid.appendChild(el);
+      })
+    }
+
+    function copyNote(e){
+      e.preventDefault();
+      const val = document.getElementById('note').value.trim();
+      if(!val){ alert('Add a line or two first.'); return }
+      navigator.clipboard.writeText(val).then(()=>{
+        alert('Copied to clipboard. Paste into your email or LinkedIn message!');
+      });
+    }
+
+    renderReads();
+    renderSheets();
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
